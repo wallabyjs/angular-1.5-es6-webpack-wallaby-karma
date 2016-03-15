@@ -1,3 +1,5 @@
+require('./App.scss');
+
 export const App = {
     bindings: {},
     controller: function(AppService) {
