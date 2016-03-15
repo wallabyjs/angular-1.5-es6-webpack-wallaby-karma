@@ -2,7 +2,7 @@ var wallabyWebpack = require('wallaby-webpack');
 var webpackConfig = require('./webpack.config.js');
 var babel = require('babel-core');
 
-webpackConfig.module.loaders = webpackConfig.module.loaders.filter(function(l){
+webpackConfig.module.loaders = webpackConfig.module.loaders.filter(function (l) {
     return l.loader !== 'babel';
 });
 webpackConfig.entryPatterns = ['src/index.js', 'beforeEachTest.js', 'src/**/*.spec.js'];
@@ -11,9 +11,10 @@ module.exports = function (wallaby) {
     return {
         debug: true,
         files: [
+            {pattern: 'src/**/*.html', load: false},
             {pattern: 'beforeEachTest.js', load: false},
             {pattern: 'src/**/*.js', load: false},
-            {pattern: 'src/**/*.spec.js', ignore:true}
+            {pattern: 'src/**/*.spec.js', ignore: true}
         ],
         tests: [
             {pattern: 'src/**/*.spec.js', load: false}

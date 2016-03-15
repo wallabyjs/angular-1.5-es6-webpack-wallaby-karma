@@ -14,7 +14,8 @@ module.exports = function(config) {
         files: [
             'src/index.js',
             'beforeEachTest.js',
-            'src/**/*.spec.js'
+            'src/**/*.spec.js',
+            'src/**/*.html'
         ],
 
         preprocessors: {
