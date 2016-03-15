@@ -4,7 +4,13 @@ var babel = require('babel-core');
 
 webpackConfig.module.loaders = webpackConfig.module.loaders.filter(function (l) {
     return l.loader !== 'babel';
+}).map(function(l) {
+    if(l.name === 'scss') {
+        l.loader = 'null-loader'; //node-sass conflict with wallaby, so not loading styles for wallaby tests.
+    }
+    return l;
 });
+
 webpackConfig.entryPatterns = ['src/index.js', 'beforeEachTest.js', 'src/**/*.spec.js'];
 
 module.exports = function (wallaby) {
@@ -12,6 +18,7 @@ module.exports = function (wallaby) {
         debug: true,
         files: [
             {pattern: 'src/**/*.html', load: false},
+            {pattern: 'src/**/*.scss', load: false},
             {pattern: 'beforeEachTest.js', load: false},
             {pattern: 'src/**/*.js', load: false},
             {pattern: 'src/**/*.spec.js', ignore: true}
